@@ -113,8 +113,8 @@ That's it! You are now ready to run the Docker container, start the Spring Boot 
 
 ## Class Diagram
 
-![Class Diagram](class-diagram.puml)
+![Class Diagram](class-diagram.png)
 
 ## Sequence Diagram
 
-![Sequence Diagram](sequence-diagram.puml)
+![Sequence Diagram](sequence-diagram.png)
