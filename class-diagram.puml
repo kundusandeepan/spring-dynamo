@@ -1,0 +1,47 @@
+@startuml
+class DynamoDBConfig {
+  +AmazonDynamoDB amazonDynamoDB()
+}
+
+class DynamoDBTableInitializer {
+  -AmazonDynamoDB amazonDynamoDB
+  +void init()
+  -void checkAndCreateTable(String tableName)
+  -boolean doesTableExist(String tableName)
+  -void createTable(String tableName)
+}
+
+class TestEntity {
+  +String id
+  +String name
+}
+
+class SampleService {
+  -SampleRepository sampleRepository
+  +TestEntity save(TestEntity entity)
+  +Optional<TestEntity> findById(String id)
+  +Iterable<TestEntity> findAll()
+  +void deleteById(String id)
+}
+
+class SampleRepository {
+  +TestEntity save(TestEntity entity)
+  +Optional<TestEntity> findById(String id)
+  +Iterable<TestEntity> findAll()
+  +void deleteById(String id)
+}
+
+class SampleController {
+  -SampleService sampleService
+  +TestEntity create(TestEntity entity)
+  +Optional<TestEntity> getById(String id)
+  +Iterable<TestEntity> getAll()
+  +void deleteById(String id)
+}
+
+DynamoDBTableInitializer --> DynamoDBConfig : uses
+SampleService --> SampleRepository : uses
+SampleController --> SampleService : uses
+SampleRepository --> TestEntity : manages
+
+@enduml

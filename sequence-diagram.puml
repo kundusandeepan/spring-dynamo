@@ -1,0 +1,43 @@
+@startuml
+actor UI as User
+participant "SampleController" as Controller
+participant "SampleService" as Service
+participant "SampleRepository" as Repository
+participant "Database" as DB
+
+User -> Controller: create(TestEntity entity)
+Controller -> Service: save(entity)
+Service -> Repository: save(entity)
+Repository -> DB: save entity
+DB --> Repository: entity saved
+Repository --> Service: entity saved
+Service --> Controller: entity saved
+Controller --> User: return saved entity
+
+User -> Controller: getById(String id)
+Controller -> Service: findById(id)
+Service -> Repository: findById(id)
+Repository -> DB: query entity by id
+DB --> Repository: return entity
+Repository --> Service: return entity
+Service --> Controller: return entity
+Controller --> User: return entity
+
+User -> Controller: getAll()
+Controller -> Service: findAll()
+Service -> Repository: findAll()
+Repository -> DB: query all entities
+DB --> Repository: return all entities
+Repository --> Service: return all entities
+Service --> Controller: return all entities
+Controller --> User: return all entities
+
+User -> Controller: deleteById(String id)
+Controller -> Service: deleteById(id)
+Service -> Repository: deleteById(id)
+Repository -> DB: delete entity by id
+DB --> Repository: entity deleted
+Repository --> Service: entity deleted
+Service --> Controller: entity deleted
+Controller --> User: entity deleted
+@enduml

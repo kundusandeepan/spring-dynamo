@@ -110,3 +110,11 @@ To test the APIs using the Postman collection, follow these steps:
 4. Click on the "Send" button to send the request and view the response.
 
 That's it! You are now ready to run the Docker container, start the Spring Boot application, import the Postman collection, and test the APIs using Postman.
+
+## Class Diagram
+
+![Class Diagram](class-diagram.puml)
+
+## Sequence Diagram
+
+![Sequence Diagram](sequence-diagram.puml)

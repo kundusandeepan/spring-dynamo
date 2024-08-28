@@ -1,0 +1,26 @@
+on:
+  push:
+    paths:
+      - 'dynamodemo/class-diagram.puml'
+      - 'dynamodemo/sequence-diagram.puml'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install urllib3
+      - name: Update README
+        run: python dynamodemo/update_readme.py
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add README.md
+          git commit -m 'Update README with latest diagrams'
+          git push
